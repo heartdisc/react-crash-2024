@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { useParams, useLoaderData, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import NotFoundPage from './NotFoundPage';
 
 const EditJobPage = ({ updateJobSubmit }) => {
   const job = useLoaderData();
+
+  if (job.error) return <NotFoundPage />;
+  
   const [title, setTitle] = useState(job.title);
   const [type, setType] = useState(job.type);
   const [location, setLocation] = useState(job.location);
